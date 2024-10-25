@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Combo Example</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="animate-text">Welcome to My Page</h1>
+        <p class="animate-text">This is a demo of various CSS features like color modes, transitions, and animations.</p>
+        <button class="translate-button" onclick="translateText()">Translate to Spanish</button>
+    </div>
+
+    <script>
+        // Translation Function
+        function translateText() {
+            const heading = document.querySelector('h1');
+            const paragraph = document.querySelector('p');
+            
+            // Simple translation logic
+            heading.textContent = 'Bienvenido a mi página';
+            paragraph.textContent = 'Esta es una demostración de varias características de CSS, como modos de color, transiciones y animaciones.';
+        }
+    </script>
+
+</body>
+</html>
+
+/* Typography: Using Google Font */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+/* Color modes: HEX, RGB, HSV */
+.container {
+    text-align: center;
+    padding: 50px;
+    background-color: #34a853; /* HEX */
+    color: rgb(255, 255, 255); /* RGB */
+    border: 5px solid hsl(0, 0%, 20%); /* HSV (HSL in CSS) */
+    transition: all 0.3s ease; /* Transition */
+}
+
+/* Hover effect with transition */
+.container:hover {
+    background-color: rgb(66, 133, 244); /* RGB color change */
+    border-color: #db4437; /* HEX color change */
+}
+
+/* Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.animate-text {
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Button styling */
+.translate-button {
+    padding: 10px 20px;
+    background-color: #fbbc05;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.translate-button:hover {
+    background-color: #34a853; /* HEX color change on hover */
+    transition: background-color 0.3s;
+}
