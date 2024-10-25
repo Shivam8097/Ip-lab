@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM and CSS Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .message {
+            padding: 15px;
+            color: #333;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 300px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            background-color: #ffecb3;
+            color: #8a4d00;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+        .dynamic-content {
+            color: #00509e;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #fontSizeSlider {
+            width: 300px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="message" class="message">Welcome to the DOM Manipulation Demo!</div>
+    
+    <button id="changeTextButton">Change Text and Style</button>
+    <button id="addElementButton">Add New Element</button>
+    <button id="toggleVisibilityButton">Toggle Visibility</button>
+    
+    <label for="fontSizeSlider">Adjust Font Size:</label>
+    <input type="range" id="fontSizeSlider" min="14" max="30" value="16">
+
+    <script>
+        // Selecting elements
+        const messageDiv = document.getElementById("message");
+        const changeTextButton = document.getElementById("changeTextButton");
+        const addElementButton = document.getElementById("addElementButton");
+        const toggleVisibilityButton = document.getElementById("toggleVisibilityButton");
+        const fontSizeSlider = document.getElementById("fontSizeSlider");
+
+        // Change text and style of the message
+        changeTextButton.addEventListener("click", () => {
+            messageDiv.textContent = "Text and style have been updated!";
+            messageDiv.classList.toggle("highlight"); // Toggle 'highlight' class
+        });
+
+        // Add a new dynamic element below the message
+        addElementButton.addEventListener("click", () => {
+            const newElement = document.createElement("p");
+            newElement.textContent = "This is a new dynamically added element!";
+            newElement.classList.add("dynamic-content");
+            document.body.appendChild(newElement);
+        });
+
+        // Toggle visibility of the message
+        toggleVisibilityButton.addEventListener("click", () => {
+            messageDiv.classList.toggle("hidden"); // Toggle 'hidden' class
+        });
+
+        // Change font size of the message based on slider
+        fontSizeSlider.addEventListener("input", (event) => {
+            messageDiv.style.fontSize = `${event.target.value}px`;
+        });
+
+        // Change background color of new elements on hover
+        document.body.addEventListener("mouseover", (event) => {
+            if (event.target.classList.contains("dynamic-content")) {
+                event.target.style.color = "#e63946";
+            }
+        });
+
+        document.body.addEventListener("mouseout", (event) => {
+            if (event.target.classList.contains("dynamic-content")) {
+                event.target.style.color = "#00509e";
+            }
+        });
+    </script>
+</body>
+</html>
