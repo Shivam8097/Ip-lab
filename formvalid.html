@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Form Validation</h2>
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">First Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <span class="error" id="nameError"></span><br>
+
+        <label for="surname">Last Name:</label><br>
+        <input type="text" id="surname" name="surname"><br>
+        <span class="error" id="surnameError"></span><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <span class="error" id="emailError"></span><br>
+
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        <span class="error" id="passwordError"></span><br>
+
+
+        <label for="Verify">Re-enter Password:</label><br>
+        <input type="text" id="verify" name="verify"><br>
+        <span class="error" id="verifyError"></span><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+      function validateForm() {
+        const name = document.getElementById('name').value;
+        const surname = document.getElementById('surname').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const verify = document.getElementById('verify').value;
+    
+        const nameError = document.getElementById('nameError');
+        const surnameError = document.getElementById('surnameError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const verifyError = document.getElementById('verifyError');
+    
+        let valid = true;
+    
+        nameError.innerHTML = '';
+        surnameError.innerHTML = '';
+        emailError.innerHTML = '';
+        passwordError.innerHTML = '';
+        verifyError.innerHTML = '';
+    
+        const namePattern = /^[A-Za-z]+$/;
+        if (name === "") {
+            nameError.innerHTML = "First Name is required.";
+            valid = false;
+        }
+        else if(!namePattern.test(name)){
+            nameError.innerHTML = "Please enter a valid first name.";
+        }
+    
+        if (surname === "") {
+            surnameError.innerHTML = "Last Name is required.";
+            valid = false;
+        }
+        else if(!namePattern.test(surname)){
+            surnameError.innerHTML = "Please enter a valid last name.";
+        }
+    
+        const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (email === "") {
+            emailError.innerHTML = "Email is required.";
+            valid = false;
+        } else if (!emailPattern.test(email)) {
+            emailError.innerHTML = "Please enter a valid email address.";
+            valid = false;
+        }
+    
+        if (password === "") {
+            passwordError.innerHTML = "Password is required.";
+            valid = false;
+        } else if (password.length < 6) {
+            passwordError.innerHTML = "Password must be at least 6 characters.";
+            valid = false;
+        }
+    
+        if(verify!==password) {
+            verifyError.innerHTML = "Passwords do not match.";
+            valid = false;
+        }
+    
+        return valid;
+    }
+    
+    
+    </script>
+
+</body>
+</html>
+
